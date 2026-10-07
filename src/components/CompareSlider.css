@@ -1,0 +1,88 @@
+.cmp {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--panel);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  box-shadow: 0 0 0 1px var(--line), 0 40px 120px rgba(0, 0, 0, 0.55);
+}
+.cmp__img,
+.cmp__before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cmp__before {
+  will-change: clip-path;
+}
+.cmp__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--text);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+.cmp__handle {
+  position: absolute;
+  top: 50%;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 50%;
+  background: var(--text);
+  color: #0a0a0a;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5), 0 0 0 6px rgba(242, 239, 233, 0.18);
+  transition: transform 0.35s var(--ease-out), background-color 0.3s;
+}
+.cmp:hover .cmp__handle,
+.cmp__handle:focus-visible {
+  transform: scale(1.08);
+  background: var(--accent);
+}
+.cmp__handle svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cmp__tag {
+  position: absolute;
+  top: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  background: rgba(7, 7, 7, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line-2);
+  pointer-events: none;
+}
+.cmp__tag--l {
+  left: 14px;
+}
+.cmp__tag--r {
+  right: 14px;
+  color: var(--accent);
+}
+@media (max-width: 560px) {
+  .cmp__handle {
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+  }
+  .cmp__tag {
+    top: 10px;
+    font-size: 9.5px;
+  }
+}

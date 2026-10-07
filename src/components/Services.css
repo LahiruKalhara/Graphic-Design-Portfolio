@@ -1,0 +1,313 @@
+.svc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.svc__row {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1.25fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px 32px;
+  padding: clamp(20px, 2.4vw, 34px) 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  isolation: isolate;
+  transition: opacity 0.4s, padding 0.5s var(--ease-out);
+}
+.svc__row::before {
+  content: '';
+  position: absolute;
+  inset: 0 calc(var(--gutter) * -1);
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.55s var(--ease-out);
+  z-index: -1;
+}
+.svc__row:hover::before,
+.svc__row:focus-visible::before {
+  transform: scaleY(1);
+}
+.svc__row:hover,
+.svc__row:focus-visible {
+  color: #0a0a0a;
+  padding-left: 18px;
+}
+.svc__row.is-dim {
+  opacity: 0.4;
+}
+.svc__num {
+  color: var(--accent);
+  font-size: 12px;
+  transition: color 0.3s;
+}
+.svc__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--f-display);
+  font-size: clamp(34px, 4.6vw, 76px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.svc__tool {
+  font-family: var(--f-body);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: var(--pr);
+  background: var(--pr-bg);
+  border: 1.5px solid var(--pr);
+}
+.svc__desc {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 44ch;
+  transition: color 0.3s;
+}
+.svc__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+.svc__count svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s var(--ease-out);
+}
+.svc__row:hover .svc__num,
+.svc__row:hover .svc__desc,
+.svc__row:hover .svc__count,
+.svc__row:focus-visible .svc__num,
+.svc__row:focus-visible .svc__desc,
+.svc__row:focus-visible .svc__count {
+  color: #0a0a0a;
+}
+.svc__row:hover .svc__count svg {
+  transform: rotate(45deg);
+}
+
+/* floating preview */
+.svc-preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+.svc-preview__card {
+  position: absolute;
+  left: 34px;
+  top: -130px;
+  width: 210px;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.svc-preview__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.svc-preview__img.is-on {
+  opacity: 1;
+}
+.svc-preview__tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 9.5px;
+  background: var(--pr-bg);
+  color: var(--pr);
+  border: 1px solid var(--pr);
+}
+
+/* toolkit */
+.toolkit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: clamp(56px, 7vw, 100px);
+}
+.app {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: clamp(20px, 2.2vw, 30px);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, var(--panel), var(--bg-2));
+  overflow: hidden;
+}
+.app::after {
+  content: '';
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  top: -120px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+.app--ps::after {
+  background: var(--ps);
+}
+.app--pr::after {
+  background: var(--pr);
+}
+.app__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+.app--ps .app__icon {
+  background: var(--ps-bg);
+  color: var(--ps);
+  box-shadow: inset 0 0 0 2px var(--ps);
+}
+.app--pr .app__icon {
+  background: var(--pr-bg);
+  color: var(--pr);
+  box-shadow: inset 0 0 0 2px var(--pr);
+}
+.app__body h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.app__body p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+.app__bar {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.app__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transform-origin: left;
+}
+.app--ps .app__bar span {
+  background: var(--ps);
+}
+.app--pr .app__bar span {
+  background: var(--pr);
+}
+.app__level {
+  align-self: start;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--line-2);
+  color: var(--muted);
+}
+.skills {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 18px 4px 0;
+}
+.skills__label {
+  color: var(--accent);
+  font-size: 11px;
+}
+.skills ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skills li {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font-size: 13.5px;
+  color: rgba(242, 239, 233, 0.85);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.skills li:hover {
+  background: var(--text);
+  color: #0a0a0a;
+  border-color: var(--text);
+}
+
+@media (max-width: 1000px) {
+  .svc__row {
+    grid-template-columns: 44px 1fr auto;
+  }
+  .svc__desc {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+  .toolkit {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .svc__row {
+    grid-template-columns: 1fr auto;
+    gap: 10px 16px;
+  }
+  .svc__num {
+    grid-column: 1 / -1;
+  }
+  .svc__desc {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    font-size: 14px;
+  }
+  .svc__count {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  .app {
+    grid-template-columns: auto 1fr;
+  }
+  .app__level {
+    display: none;
+  }
+  .app__icon {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    border-radius: 13px;
+  }
+}

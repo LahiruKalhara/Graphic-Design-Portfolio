@@ -1,0 +1,207 @@
+.contact {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(100px, 13vw, 200px) clamp(60px, 8vw, 110px);
+  border-top: 1px solid var(--line);
+}
+.contact__glow {
+  position: absolute;
+  width: 80vw;
+  height: 80vw;
+  max-width: 1100px;
+  max-height: 1100px;
+  right: -20vw;
+  top: -30vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 90, 31, 0.22), transparent 62%);
+  filter: blur(20px);
+  pointer-events: none;
+  animation: float 14s var(--ease-in-out) infinite alternate;
+}
+@keyframes float {
+  to {
+    transform: translate(-8vw, 10vw) scale(1.1);
+  }
+}
+
+.contact__grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.contact__title {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(56px, 10.5vw, 190px);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+.contact__title em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  text-transform: none;
+  color: var(--accent);
+  font-size: 1.05em;
+}
+
+.contact__circle {
+  position: relative;
+  width: clamp(170px, 17vw, 240px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.contact__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin 16s linear infinite;
+}
+.contact__ring text {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  fill: var(--text);
+}
+.contact__circle-core {
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #0a0a0a;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.15;
+  padding: 10px;
+  transition: transform 0.5s var(--ease-out), background-color 0.3s;
+}
+.contact__circle-core svg {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.5s var(--ease-out);
+}
+.contact__circle:hover .contact__circle-core {
+  transform: scale(1.08);
+  background: var(--text);
+}
+.contact__circle:hover .contact__circle-core svg {
+  transform: rotate(45deg);
+}
+
+.contact__links {
+  list-style: none;
+  margin: clamp(56px, 7vw, 100px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 32px;
+  border-top: 1px solid var(--line);
+}
+.contact__links a {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 24px 6px;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.4s, padding 0.4s var(--ease-out);
+}
+.contact__links a:hover {
+  background: rgba(242, 239, 233, 0.04);
+  padding-left: 14px;
+}
+.contact__icon {
+  grid-row: 1 / 3;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+.contact__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.contact__links a:hover .contact__icon {
+  background: var(--accent);
+  color: #0a0a0a;
+  border-color: var(--accent);
+}
+.contact__label {
+  font-size: 10.5px;
+  color: var(--muted);
+}
+.contact__value {
+  grid-column: 2;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.contact__arrow {
+  grid-row: 1 / 3;
+  grid-column: 3;
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  transition: transform 0.4s var(--ease-out), color 0.3s;
+}
+.contact__links a:hover .contact__arrow {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.contact__meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: clamp(40px, 5vw, 70px);
+}
+.contact__meta .mono {
+  font-size: 10.5px;
+  color: var(--accent);
+}
+.contact__meta p {
+  margin-top: 6px;
+  font-size: 15px;
+  color: rgba(242, 239, 233, 0.86);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.contact__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3ddc84;
+  animation: pulse 2s infinite;
+}
+
+@media (max-width: 560px) {
+  .contact__links {
+    grid-template-columns: 1fr;
+  }
+  .contact__value {
+    font-size: 15.5px;
+  }
+}
+@media (max-width: 800px) {
+  .contact__meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
